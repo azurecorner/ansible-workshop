@@ -34,21 +34,21 @@ variable "subnets" {
 
 
 variable "username" {
- 
+
 }
 
 variable "public_ip_name" {
-  
+
 }
 
 variable "network_security_group_name" {
-  
+
 }
 
 variable "network_interface_name" {
-  
+
 }
 
 variable "virtual_machine_name" {
-  
+
 }

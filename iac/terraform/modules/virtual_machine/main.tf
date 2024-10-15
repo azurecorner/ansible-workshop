@@ -101,10 +101,11 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
 
 
 resource "azurerm_virtual_machine_extension" "custom_script" {
-  name                 = "customScriptExtension"
-  virtual_machine_id   = azurerm_linux_virtual_machine.linux_virtual_machine.id
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
+  count               = var.computer_name == "controlNode" ? 1 : 0  
+  name                = "customScriptExtension"
+  virtual_machine_id  = azurerm_linux_virtual_machine.linux_virtual_machine.id
+  publisher           = "Microsoft.Azure.Extensions"
+  type                = "CustomScript"
   type_handler_version = "2.0"
 
   protected_settings = <<PROT
@@ -112,5 +113,5 @@ resource "azurerm_virtual_machine_extension" "custom_script" {
     "script": "${base64encode(templatefile("script.sh", { arg1="1", arg2="2", arg3="3" }))}"
   }
   PROT
-  depends_on = [ azurerm_linux_virtual_machine.linux_virtual_machine ]
+  depends_on = [azurerm_linux_virtual_machine.linux_virtual_machine]
 }

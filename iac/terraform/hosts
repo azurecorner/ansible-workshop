@@ -1,0 +1,9 @@
+[all_hosts]
+target1 ansible_ssh_host=20.224.79.172
+target2 ansible_ssh_host=20.224.79.42
+
+[webservers]
+target1
+
+[dbservers]
+target2 

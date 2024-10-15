@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"control_node_virtual_machine","Source":"./modules/virtual_machine","Dir":"modules/virtual_machine"},{"Key":"managed_node_virtual_machine","Source":"./modules/virtual_machine","Dir":"modules/virtual_machine"},{"Key":"virtual_machine","Source":"./modules/virtual_machine","Dir":"modules/virtual_machine"}]}

@@ -10,13 +10,25 @@ resource_group_location = "West Europe"
 virtual_network_name          = "ANSIBLE-DATASYNCHRO-VNET"
 virtual_network_address_space = "10.3.0.0/16"
 
+
+
 subnets = {
-  subnet1 = {
+  controlNodeSubnet = {
     name             = "CONTROL-NODE-SUBNET"
     address_prefixes = ["10.3.0.0/24"]
   }
-  subnet2 = {
+  managedNodeSubnet = {
     name             = "MANAGED-NODE-SUBNET"
     address_prefixes = ["10.3.1.0/24"]
   }
 }
+
+username = "logcorner"
+
+public_ip_name="PIP"
+
+network_security_group_name="NSG"
+
+network_interface_name="NIC"
+
+virtual_machine_name="VM"

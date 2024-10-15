@@ -5,5 +5,6 @@ echo "The third argument passed is: ${arg3}"
 
 sudo apt update
 sudo apt upgrade
-sudo apt install ansible
+sudo apt install -y ansible
+
 ansible --version

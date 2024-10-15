@@ -17,7 +17,6 @@ variable "virtual_network_address_space" {
 }
 
 
-
 variable "subnets" {
 
   description = "A map of subnets to create"
@@ -32,23 +31,22 @@ variable "subnets" {
 
 }
 
-
 variable "username" {
-
+  type = string
 }
 
 variable "public_ip_name" {
-
+  type = string
 }
 
 variable "network_security_group_name" {
-
+  type = string
 }
 
 variable "network_interface_name" {
-
+  type = string
 }
 
 variable "virtual_machine_name" {
-
+  type = string
 }

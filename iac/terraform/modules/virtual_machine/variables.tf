@@ -18,24 +18,24 @@ variable "username" {
 }
 
 variable "public_ip_name" {
-  
+    type = string
 }
 
 variable "network_security_group_name" {
-  
+    type = string
 }
 
 variable "network_interface_name" {
-  
+    type = string
 }
 
 variable "virtual_machine_name" {
-  
+    type = string
 }
 
 variable "computer_name" {
-  
+    type = string
 }
 variable "public_key" {
-  
+    type = string
 }

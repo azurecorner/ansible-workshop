@@ -37,7 +37,26 @@ module "control_node_virtual_machine" {
   computer_name               = "controlNode"
   public_key                  = azapi_resource_action.ssh_public_key_gen.output.publicKey
 
-  depends_on = [azurerm_virtual_network.virtual_network]
+  script_path         = "script.sh"
+  script_args = {
+     arg1 = {
+      vmname    = module.managed_node_virtual_machine[0].linux_virtual_machine_name
+      vmtype    = "webservers"
+      ipaddress = module.managed_node_virtual_machine[0].private_ip_address
+    },
+    arg2 = {
+      vmname    = module.managed_node_virtual_machine[1].linux_virtual_machine_name
+      vmtype    = "dbserver"
+      ipaddress = module.managed_node_virtual_machine[1].private_ip_address
+    },
+    arg3 = {
+      vmname    = module.managed_node_virtual_machine[2].linux_virtual_machine_name
+      vmtype    = "appserver"
+      ipaddress = module.managed_node_virtual_machine[2].private_ip_address
+    }
+  }
+
+  depends_on = [azurerm_virtual_network.virtual_network , module.managed_node_virtual_machine]
 }
 
 

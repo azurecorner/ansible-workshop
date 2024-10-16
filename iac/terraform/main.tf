@@ -1,3 +1,18 @@
+
+# Define local variable to create script_args dynamically
+locals {
+  script_args = {
+    for idx in range(length(module.managed_node_virtual_machine)) : 
+    format("arg%d", idx + 1) => {
+      vmname    = module.managed_node_virtual_machine[idx].linux_virtual_machine_name
+      vmtype    = (idx == 0) ? "webserver" : (idx == 1 ? "dbserver" : "appserver")
+      ipaddress = module.managed_node_virtual_machine[idx].private_ip_address
+    }
+  }
+}
+
+
+
 resource "azurerm_resource_group" "resource_group" {
   location = var.resource_group_location
   name     = var.resource_group_name
@@ -38,23 +53,24 @@ module "control_node_virtual_machine" {
   public_key                  = azapi_resource_action.ssh_public_key_gen.output.publicKey
 
   script_path         = "script.sh"
-  script_args = {
-     arg1 = {
-      vmname    = module.managed_node_virtual_machine[0].linux_virtual_machine_name
-      vmtype    = "webservers"
-      ipaddress = module.managed_node_virtual_machine[0].private_ip_address
-    },
-    arg2 = {
-      vmname    = module.managed_node_virtual_machine[1].linux_virtual_machine_name
-      vmtype    = "dbserver"
-      ipaddress = module.managed_node_virtual_machine[1].private_ip_address
-    },
-    arg3 = {
-      vmname    = module.managed_node_virtual_machine[2].linux_virtual_machine_name
-      vmtype    = "appserver"
-      ipaddress = module.managed_node_virtual_machine[2].private_ip_address
-    }
-  }
+  # script_args = {
+  #    arg1 = {
+  #     vmname    = module.managed_node_virtual_machine[0].linux_virtual_machine_name
+  #     vmtype    = "webservers"
+  #     ipaddress = module.managed_node_virtual_machine[0].private_ip_address
+  #   },
+  #   arg2 = {
+  #     vmname    = module.managed_node_virtual_machine[1].linux_virtual_machine_name
+  #     vmtype    = "dbserver"
+  #     ipaddress = module.managed_node_virtual_machine[1].private_ip_address
+  #   },
+  #   arg3 = {
+  #     vmname    = module.managed_node_virtual_machine[2].linux_virtual_machine_name
+  #     vmtype    = "appserver"
+  #     ipaddress = module.managed_node_virtual_machine[2].private_ip_address
+  #   }
+  # }
+   script_args                 = local.script_args  # Use dynamic script_args
 
   depends_on = [azurerm_virtual_network.virtual_network , module.managed_node_virtual_machine]
 }

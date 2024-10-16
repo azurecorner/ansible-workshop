@@ -108,12 +108,6 @@ resource "azurerm_virtual_machine_extension" "custom_script" {
   type                = "CustomScript"
   type_handler_version = "2.0"
 
-  # protected_settings = <<PROT
-  # {
-  #   "script": "${base64encode(templatefile("script.sh", { arg1="1", arg2="2", arg3="3" }))}"
-  # }
-  # PROT
-
   # Load the script from the path provided in the variable and pass in the args
   protected_settings = <<PROT
   {

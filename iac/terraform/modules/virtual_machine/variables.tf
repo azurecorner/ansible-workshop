@@ -49,15 +49,6 @@ variable "script_path" {
   default     = "script.sh"  # Provide the default script path
 }
 
-# variable "script_args" {
-#   description = "Arguments to pass to the script."
-#   type        = map(string)
-#   default     = {
-#     arg1 = "1"
-#     arg2 = "2"
-#     arg3 = "3"
-#   }
-# }
 
 variable "script_args" {
   description = "Map of VM details with vmname, vmtype, and ipaddress"

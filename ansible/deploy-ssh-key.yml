@@ -1,0 +1,9 @@
+- name: Distribute SSH public key to managed nodes
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Install authorized keys
+      authorized_key:
+        user: logcorner
+        state: present
+        key: "{{ lookup('file', '/tmp/logornerkeys.pub') }}"

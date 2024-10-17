@@ -1,12 +1,12 @@
-- name: generate SSH key playbook
-  hosts: all
+- name: Generate SSH key on control node
+  hosts: localhost
+  connection: local
+  gather_facts: no
   tasks:
-  - name: generate SSH key"
-    openssh_keypair:
-      path: /tmp/logornerkeys
-      type: rsa
-      size: 4096
-      state: present
-      force: no
-    run_once: yes
-    delegate_to: localhost
+    - name: Generate SSH key
+      openssh_keypair:
+        path: /tmp/logornerkeys
+        type: rsa
+        size: 4096
+        state: present
+        force: no

@@ -1,0 +1,12 @@
+- name: generate SSH key playbook
+  hosts: all
+  tasks:
+  - name: generate SSH key"
+    openssh_keypair:
+      path: /tmp/logornerkeys
+      type: rsa
+      size: 4096
+      state: present
+      force: no
+    run_once: yes
+    delegate_to: localhost
